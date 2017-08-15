@@ -1,0 +1,9 @@
+# Git
+.git
+
+# NPM
+node_modules
+npm-debug.log
+
+# Documentation
+docs
