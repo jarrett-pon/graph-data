@@ -6,11 +6,13 @@ var APP_DIR = path.resolve(__dirname, 'src/app');
 
 var config = {
     entry: {
-        family_view_create: APP_DIR + '/family_view_create.jsx'
+        index: APP_DIR + '/default.jsx'
     },
     output: {
         path: BUILD_DIR,
-        filename: "[name].bundle.js"
+        filename: "[name].bundle.js",
+        libraryTarget: 'var',
+        library: 'ReactGraphData'
     },
     module : {
         loaders : [
@@ -20,7 +22,10 @@ var config = {
                 loader : 'babel-loader'
             }
         ]
-    }
+    },
+    plugins: [
+       new webpack.optimize.UglifyJsPlugin({minimize: true})
+   ]
 };
 
 module.exports = config;

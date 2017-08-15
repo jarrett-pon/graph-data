@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="../src/builds/index.bundle.js"></script>
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- <div id="graph-data-container" data-graphdata='{"labels":["Jan","Feb","March","April"],"datasets":[{"label":["Batman views"],"borderColor":[],"backgroundColor":["#cf00e3","#b0642c","#2149c9","#156a54"],"data":["12","4","3","2"]}]}' data-caption="funtime" data-graphtype="bar"> -->
+      <div id="graph-data-container" data-graphdata='{"labels":["0","10","20","30","40","50","60","70","80","90","100"],"datasets":[{"label":["viewership"],"borderColor":["red"],"backgroundColor":["rgba(255, 255, 255, 0.0)"],"data":["100","85","73","60","56","49","30","25","19","17","15"]}]}' data-caption="funtime" data-graphtype="line">
+    </div>
+    <script>
+      var element = document.getElementById("graph-data-container");
+      var graphInstance = new ReactGraphData({container: element});
+    </script>
+  </body>
+</html>
