@@ -60,6 +60,9 @@ export default class Graph extends React.Component {
               position: 'bottom'
             }
           }
+          data.datasets.map((dataset) => {
+            return dataset.borderWidth = 2;
+          });
           graph = (<Bar data={data} options={options} />);
         }
 
