@@ -1,31 +1,49 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const MINIFY = JSON.parse(process.env.MINIFY || '0');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var BUILD_DIR = path.resolve(__dirname, './src/builds');
-var APP_DIR = path.resolve(__dirname, 'src/app');
+let plugins = [
+  new HtmlWebpackPlugin({
+    filename: 'default.html',
+    template: 'src/builds/default.html',
+    chunks: ['default'],
+    inject: 'head'
+  }),
+];
 
-var config = {
+if (MINIFY) {
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    },
+    sourceMap: true,
+    mangle: true,
+    comments: false
+  }));
+}
+
+const config = {
     entry: {
-        index: APP_DIR + '/default.jsx'
+      'default': './src/builds/default.js'
     },
     output: {
-        path: BUILD_DIR,
-        filename: "[name].bundle.js",
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[hash:8].js',
         libraryTarget: 'var',
         library: 'ReactGraphData'
     },
+    devtool: 'source-map',
     module : {
         loaders : [
             {
                 test : /\.jsx?/,
-                include : APP_DIR,
+                exclude: /node_modules/,
                 loader : 'babel-loader'
             }
         ]
     },
-    plugins: [
-       new webpack.optimize.UglifyJsPlugin({minimize: true})
-   ]
+    plugins: plugins
 };
 
 module.exports = config;
