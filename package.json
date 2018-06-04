@@ -2,7 +2,7 @@
   "name": "graph-data",
   "version": "1.0.0",
   "description": "Graph Data for Articles",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "bundle": "MINIFY=1 node_modules/.bin/webpack --config=webpack.config.js",
     "start": "node_modules/.bin/webpack-dev-server --config=webpack.config.js --host 0.0.0.0 --port 3008 --inline --watch"
