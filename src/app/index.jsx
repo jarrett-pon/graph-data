@@ -1,15 +1,24 @@
 import React from 'react';
-import Graph from './components/Graph.jsx';
+import { Provider } from "react-redux";
+
+import configureStore from "./store/configureStore";
+import { Graph } from './components/Graph.jsx';
 
 export default class Index extends React.Component {
     render() {
         const { graphdata, caption, graphtype } = this.props;
+        const initialState = {
+            graph: {
+                data: graphdata,
+                caption,
+                type: graphtype,
+            },
+        };
+        const store = configureStore(initialState);
         return (
-          <div>
-            <Graph graphData={graphdata}
-              caption={caption}
-              type={graphtype}/>
-          </div>
+          <Provider store={store}>
+            <Graph />
+          </Provider>
         );
     }
 }
